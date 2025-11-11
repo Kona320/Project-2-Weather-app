@@ -1,0 +1,177 @@
+/* --- Base layout and typography --- */
+:root {
+  --panel-bg: rgba(0,0,0,0.38);
+  --panel-radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow-x: hidden;
+  transition: background 0.6s ease;
+  background: #333; /* fallback */
+}
+
+/* Background overlay (theme gradients applied here) */
+#bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  transition: background 0.8s ease;
+}
+
+/* Particles container sits above gradient but behind UI */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Theme gradients applied via classes on #bg-overlay */
+#bg-overlay.sunny  { background: linear-gradient(to top, #f6d365, #fda085); }
+#bg-overlay.cloudy { background: linear-gradient(to top, #757f9a, #d7dde8); }
+#bg-overlay.rainy  { background: linear-gradient(to top, #2c3e50, #4ca1af); }
+#bg-overlay.snowy  { background: linear-gradient(to top, #83a4d4, #b6fbff); }
+#bg-overlay.windy  { background: linear-gradient(to top, #74ebd5, #ACB6E5); }
+#bg-overlay.night  { background: linear-gradient(to top, #141E30, #243B55); }
+
+/* Layout */
+h1 { margin: 0 0 12px 0; opacity: 0.9; font-weight: 600; }
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background: var(--panel-bg);
+  border-radius: var(--panel-radius);
+  padding: 12px;
+  text-align: left;
+}
+
+.sidebar h3 { margin-top: 0; color: #f0f0f0; }
+
+.city-item {
+  cursor: pointer;
+  margin: 8px 0;
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.city-item:hover { background: rgba(255,255,255,0.08); }
+
+/* Content area panels */
+.content { width: 760px; max-width: calc(100vw - 260px); }
+
+.search-container {
+  margin: 12px 0 18px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+input[type="text"] {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  min-width: 220px;
+}
+
+button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Panels */
+.weather-section, .forecast-section {
+  background: var(--panel-bg);
+  border-radius: var(--panel-radius);
+  padding: 16px;
+  margin-top: 12px;
+}
+
+/* Forecast list */
+.forecast-container { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+
+.forecast-day {
+  width: 120px;
+  min-height: 110px;
+  background: rgba(0,0,0,0.28);
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  display: inline-block;
+}
+
+/* Make icons stand out on dark backgrounds */
+.forecast-day img {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin: 6px auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6)) brightness(1.6);
+}
+
+/* Particle styles (rain and snow) */
+.rain-drop, .snow-flake {
+  position: absolute;
+  top: -10vh;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.rain-drop {
+  width: 2px;
+  height: 12px;
+  background: rgba(255,255,255,0.75);
+  transform: translateY(0);
+  animation-name: fall;
+  animation-timing-function: linear;
+}
+
+.snow-flake {
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  animation-name: fallSlow;
+  animation-timing-function: linear;
+}
+
+/* Animations */
+@keyframes fall {
+  to { transform: translateY(120vh); }
+}
+@keyframes fallSlow {
+  to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Improve icon/readability on small screens */
+@media (max-width: 900px) {
+  .main-container { flex-direction: column; align-items: center; }
+  .sidebar { width: 90%; margin-bottom: 12px; }
+  .content { width: 90%; }
+}
