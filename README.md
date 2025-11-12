@@ -2,6 +2,8 @@
 
 Live url to the weather app: https://weather-app-kona320.netlify.app/
 
+or alternatively: https://project2weatherapp.pages.dev/
+
 About the app:
 
 This is an simple weather forecast application, that uses openweathermap's API to show you weather forecast of cities across the world. It features geolocation, celsius/fahrenheit switch, search option to find cities, and list of popular cities on the left side for quick access. The application also features simple but nice graphics. The background color changes depending on the weather and time of day of the selected city.
@@ -49,5 +51,6 @@ There is no video this time, but Git portfolio is public and clean. This README 
 
 
 Total points: 29.5
+
 
 
